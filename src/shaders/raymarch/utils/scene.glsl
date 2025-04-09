@@ -22,15 +22,16 @@ float brickSDF(in vec3 pos) {
     }
 
     pos.x = fract(pos.x) - .5;
-    pos.y = mod(pos.y, .3) - .125;
 
-    return boxSDF(pos, size);
+    const float MAX_HEIGHT = 2.5;
+    pos.y = max(mod(pos.y, .3) - .125, pos.y - MAX_HEIGHT);
+
+    return boxSDF(pos, size) - 0.008;
 }
 
 Material bricks(in vec3 pos) {
     Material bricks = material();
-    bricks.color = vec3(1, 0, 0);
-
+    bricks.color = vec3(0.9,0.412,0.276);
     bricks.sdf = brickSDF(pos);
 
     return bricks;

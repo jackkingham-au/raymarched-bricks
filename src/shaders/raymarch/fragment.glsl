@@ -14,6 +14,7 @@ const float SUN_BRIGHTNESS = .002;
 
 #define LIGHT_POSITION vec3(-5, 5, -5)
 #define CAMERA_ROTATE 1
+// #define CAMERA_ORIGIN vec3(7.0, 6, 7.0)
 
 const float PI = 3.14159;
 
@@ -34,9 +35,8 @@ void main() {
     vec2 mouse = uMouse.xy / uResolution;
 
     // vec3 origin = vec3(14.0 * cos(4.5 * mouse.x * uMouseDown), 6.0, 14.0 * sin(4.5 * mouse.x * uMouseDown));
-    vec3 origin = CAMERA_ORIGIN;
 
-    Camera camera = createCamera(uv, CAMERA_LOOKAT, origin);
+    Camera camera = createCamera(uv, CAMERA_LOOKAT, CAMERA_ORIGIN);
     Material material = material();
     vec3 col = render(uv, camera, material);
 
